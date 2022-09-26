@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Page {
+    toHTML() : String
+}
+
+abstract class Tag {
+    - text : String
+    getText() : String
+    setText(text : String) : void
+    toHTML() : String
+}
+
+Tag <|-- Paragraph
+Tag <|-- Title
+Tag <|-- Link
+Tag <|-- Image
+
+Page -> "*" Tag : tags
+Site -> "*" Page : pages
+Site : render()
+
+@enduml
