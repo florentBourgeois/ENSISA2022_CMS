@@ -2,6 +2,8 @@
 'https://plantuml.com/class-diagram
 
 class Page {
+    -title : String
+    -author : String
     toHTML() : String
 }
 
@@ -17,8 +19,15 @@ Tag <|-- Title
 Tag <|-- Link
 Tag <|-- Image
 
-Page -> "*" Tag : tags
+Page -> "*" Tag : content
 Site -> "*" Page : pages
-Site : render()
+
+class Site {
+    -title : String
+    -pages : Map<String, Page>
+    add(Page p)
+    remove(Page p)
+    render(String name)
+}
 
 @enduml
