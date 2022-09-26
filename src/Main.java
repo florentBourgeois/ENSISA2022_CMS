@@ -1,3 +1,4 @@
+import Tags.Image;
 import Tags.Link;
 import Tags.Paragraph;
 import Tags.Title;
@@ -34,6 +35,14 @@ public class Main {
         Link l = new Link();
         l.setHref("www.foo.com");
         System.out.println(l.toHTML());
+
+        System.out.println("----------Images!----------");
+        Image i = new Image();
+        System.out.println(i.toHTML());
+
+        i.setText("UHA");
+        i.setSrc("https://e-formation.uha.fr/pluginfile.php/1/core_admin/logocompact/300x300/1663188003/UHA%20-%20Picto.png");
+        System.out.println(i.toHTML());
 
     }
 
