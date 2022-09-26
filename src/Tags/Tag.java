@@ -1,7 +1,8 @@
+package Tags;
+
 public abstract class Tag {
 
-    protected String text = "lalalala";
-
+    protected String text = "Hello World";
 
     public String getText() {
         return text;
@@ -10,7 +11,6 @@ public abstract class Tag {
     public void setText(String text) {
         this.text = text;
     }
-
 
     public abstract String toHTML() ;
 

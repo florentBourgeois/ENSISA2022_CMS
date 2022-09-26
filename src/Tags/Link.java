@@ -1,22 +1,18 @@
-public class Link extends Tag{
+package Tags;
+
+public class Link extends Tag {
 
     private String href = "www.google.com";
 
     public Link() {
-        text = "non c'est lululu";
+        text = "Lie par défaut (google)";
     }
 
 
-    public Link(String text) {
+    public Link(String text, String href) {
         this.text = text;
+        this.href = href;
     }
-
-    public Link(Link p) {
-        this.text = p.text;
-    }
-
-
-
 
     public String getHref() {
         return href;
@@ -39,20 +35,4 @@ public class Link extends Tag{
                 '}';
     }
 
-    public static void main(String[] args) {
-        Link t = new Link();
-        t.setHref("www.foo.com");
-        System.out.println(t.toHTML());
-
-        t.setText("Hello world!");
-        System.out.println(t.toHTML());
-
-        Link t2 = new Link();
-        t2.setText("Paragraphe 2");
-        System.out.println(t2.toHTML());
-
-        Link t3 = new Link("Le troisième");
-        System.out.println(t3.toHTML());
-
-    }
 }
