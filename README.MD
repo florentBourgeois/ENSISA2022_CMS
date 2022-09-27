@@ -12,7 +12,7 @@ Le projet est composé d'un ensemble de tag HTML simples ainsi que d'une Page et
 
 Le client attend de notre entreprise la création d'un CMS maison qu'il pourra mobiliser pour ses développements futurs. La solution devra être maintenu sur une longue période et supporter des ajouts de fonctionnalités fréquents. Ses attentes immédiates sont :
 <ul>
-    <li><s>Créer des sites composés de plusieurs pages ; sans styles particulier<s></li>
+    <li><s>Créer des sites composés de plusieurs pages ; sans styles particulier</s></li>
 	<li>Créer des sections à plusieurs collones. Une section doit pouvoir être divisée en deux colonnes. Une colonne doit pouvoir être divisée en deux colonnes (Div2Col)</li>
 	<li>Ajouter de la couleur, du gras et (ou) de l'italique sur n'importe quel tag existant (StyleCSS).</li>
 	<li>Créer très facilement des pages à partir de templates prédéfinis pour facilement alimenter le site. Trois templates de base existent : Page "BigTitlePage" constituée d'un titre principal et d'un paragraphe, la page "PicturePage" qui comprend une image suivi d'un titre en taille 2 et la page "SourcesPage" qui contient cinq liens suivis d'une brève description</li>
