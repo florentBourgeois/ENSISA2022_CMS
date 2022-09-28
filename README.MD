@@ -25,3 +25,14 @@ Le client attend de notre entreprise la création d'un CMS maison qu'il pourra m
 </ol>
 
 
+## Exercice (1)
+
+Assignez à chaque demande du client un (ou des ?) design pattern(s) et expliquez pourquoi vous avez choisi ce(s) pattern(s).
+
+Pour répondre à l'exercice : éditez le fichier ./Exercices/Exercice1.md puis déposez le dans l'activité associée sur e-formation
+
+
+
+
+
+
