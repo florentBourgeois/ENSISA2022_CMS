@@ -29,7 +29,7 @@ Le client attend de notre entreprise la création d'un CMS maison qu'il pourra m
 </ol>
 
 
-## Exercice (1)
+## Exercice (1) : Analyse du problème et proposition de solutions
 <details>
   <summary>Détails</summary>
   Assignez à chaque demande du client un (ou des ?) design pattern(s) et expliquez pourquoi vous avez choisi ce(s) pattern(s).
