@@ -53,4 +53,17 @@ Le client attend de notre entreprise la création d'un CMS maison qu'il pourra m
   Si vous le souhaitez, vous pouvez utiliser le fichier ./Documentation/CMS_UML.puml comme base plantUML créer vos diagrammes sur https://plantuml-editor.kkeisuke.com.
 
 </details>
+
+## Exercice (3) : Implémentation
+
+<details>
+  <summary>Détails</summary>
+  Le plan de l'application est défini. A vos clavier pour coder la solution ! 
+  L'objectif de cet exercice est d'implémenter l'un (ou plusieurs) des différents patterns dans le projet.
+  Proposez une execution du code qui mobilise le pattern déployé. 
+
+  Pensez à completer le document ./Exercices/Exercice3.md pour suivre votre avancement. 
+
+  Pour répondre à l'exercice : Déposez le code du projet  produit sous la forme d'une archive dans l'activité associée sur e-formation.
+
 </details>
