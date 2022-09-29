@@ -40,7 +40,7 @@ Le client attend de notre entreprise la création d'un CMS maison qu'il pourra m
 </details>
 
 
-## Exercice (2)
+## Exercice (2) : Modélisation des solutions
 <details>
   <summary>Détails</summary>
   Maintenant que les différents patterns sont spécifiés ; il est temps de débuter leur intégration dans le projet. 
@@ -52,4 +52,5 @@ Le client attend de notre entreprise la création d'un CMS maison qu'il pourra m
   
   Si vous le souhaitez, vous pouvez utiliser le fichier ./Documentation/CMS_UML.puml comme base plantUML créer vos diagrammes sur https://plantuml-editor.kkeisuke.com.
 
+</details>
 </details>
