@@ -31,7 +31,7 @@ Assignez à chaque demande du client un (ou des ?) design pattern(s) et explique
 
 Pour répondre à l'exercice : éditez le fichier ./Exercices/Exercice1.md puis déposez le dans l'activité associée sur e-formation
 
-
+Veuillez trouver la réponse à l'exercice 1 dans le fichier ./Exercices/Correction1.md
 
 
 
