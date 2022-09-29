@@ -4,6 +4,10 @@
 
 L'objectif de ce projet est de servir de support à l'apprentissage de differents designs patterns dans un contexte réel
 
+Pages UHA 4.0 associées : 
+- https://confluence.uha4point0.fr/pages/viewpage.action?pageId=119473126
+- 
+
 ## Base existante 
 
 Le projet est composé d'un ensemble de tag HTML simples ainsi que d'une Page et d'une classe Main qui les mobilises
@@ -26,13 +30,26 @@ Le client attend de notre entreprise la création d'un CMS maison qu'il pourra m
 
 
 ## Exercice (1)
+<details>
+  <summary>Détails</summary>
+  Assignez à chaque demande du client un (ou des ?) design pattern(s) et expliquez pourquoi vous avez choisi ce(s) pattern(s).
+  
+  Pour répondre à l'exercice : éditez le fichier ./Exercices/Exercice1.md puis déposez le dans l'activité associée sur e-formation
+  
+  Veuillez trouver la réponse à l'exercice 1 dans le fichier ./Exercices/Correction1.md
+</details>
 
-Assignez à chaque demande du client un (ou des ?) design pattern(s) et expliquez pourquoi vous avez choisi ce(s) pattern(s).
 
-Pour répondre à l'exercice : éditez le fichier ./Exercices/Exercice1.md puis déposez le dans l'activité associée sur e-formation
+## Exercice (2)
+<details>
+  <summary>Détails</summary>
+  Maintenant que les différents patterns sont spécifiés ; il est temps de débuter leur intégration dans le projet. 
+  L'objectif de cet exercice est de créer l'UML pour les différentes requetes du client.  
 
-Veuillez trouver la réponse à l'exercice 1 dans le fichier ./Exercices/Correction1.md
+  Pour répondre à l'exercice : Créez un fichier image nommé Exercice2 que vous déposerez dans l'activité associée sur e-formation.
 
+  N'hésitez pas à déposer un fichier par pattern si vous n'êtes pas à l'aise avec les diagrammes UML.
+  
+  Si vous le souhaitez, vous pouvez utiliser le fichier ./Documentation/CMS_UML.puml comme base plantUML créer vos diagrammes sur https://plantuml-editor.kkeisuke.com.
 
-
-
+</details>
