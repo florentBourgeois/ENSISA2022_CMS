@@ -33,4 +33,27 @@ package "Bases des objets" <<Frame>> {
         render(String name)
     }
 }
+
+package "Composite" <<Frame>> {
+
+    class Div2Col {
+
+    }
+
+    Tag <|--- Div2Col
+    Tag "colA *" <-- Div2Col
+    Tag "colB *" <-- Div2Col
+
+}
+
+package "Decorator" <<Frame>> {
+
+    Tag <|-- StyleCSS
+    Tag <-- StyleCSS
+
+    StyleCSS <|-- Colored
+    StyleCSS <|-- Bolded
+    StyleCSS <|-- Underligned
+
+}
 @enduml
