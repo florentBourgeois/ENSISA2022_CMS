@@ -32,6 +32,12 @@ package "Bases des objets" <<Frame>> {
         remove(Page p)
         render(String name)
     }
+
+    Image : toHTML(): String
+    Link : toHTML(): String
+    Title : toHTML(): String
+    Paragraph : toHTML(): String
+
 }
 
 package "Composite" <<Frame>> {
@@ -44,6 +50,8 @@ package "Composite" <<Frame>> {
     Tag "colA *" <-- Div2Col
     Tag "colB *" <-- Div2Col
 
+    Div2Col : toHTML(): String
+
 }
 
 package "Decorator" <<Frame>> {
@@ -55,5 +63,25 @@ package "Decorator" <<Frame>> {
     StyleCSS <|-- Bolded
     StyleCSS <|-- Underligned
 
+    Underligned : toHTML(): String
+    Bolded : toHTML(): String
+    Colored : toHTML(): String
+
 }
+
+
+package "Prototype" <<Frame>> {
+    Page : clone()
+
+    Registry --> "templates *" Page
+    class Registry {
+        add(String, Page)
+        remove(String)
+        get(String) : Page
+    }
+
+    Tag : <abstract> clone()
+}
+
+
 @enduml
