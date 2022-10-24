@@ -40,7 +40,7 @@ package "Bases des objets" <<Frame>> {
 
 }
 
-package "Composite" <<Frame>> {
+package "Composite - création de div dans des div" <<Frame>> {
 
     class Div2Col {
 
@@ -54,7 +54,7 @@ package "Composite" <<Frame>> {
 
 }
 
-package "Decorator" <<Frame>> {
+package "Decorator - ajout de style à tout Tag" <<Frame>> {
 
     abstract class StyleCSS
     Tag <|-- StyleCSS
@@ -71,7 +71,7 @@ package "Decorator" <<Frame>> {
 }
 
 
-package "Prototype" <<Frame>> {
+package "Prototype - mise à dispo de templates" <<Frame>> {
     Page : clone()
 
     Registry --> "templates *" Page
@@ -84,7 +84,7 @@ package "Prototype" <<Frame>> {
     Tag : <abstract> clone()
 }
 
-package "Builder" <<Frame>> {
+package "Builder - création 'simple' de templates" <<Frame>> {
       class PageBuilder {
         addParagraph()
         addLink()
@@ -96,6 +96,11 @@ package "Builder" <<Frame>> {
       PageBuilder ..> "<create>" Page
       PageBuilder -> Registry
       PageBuilder -> "inProgress" Page
+}
+
+
+package "Abstract factory" <<Frame>> {
+
 }
 
 @enduml
