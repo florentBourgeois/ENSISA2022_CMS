@@ -101,6 +101,28 @@ package "Builder - création 'simple' de templates" <<Frame>> {
 
 package "Abstract factory" <<Frame>> {
 
+    interface StyledTagFactory {
+        createParagraph() : Paragraph
+        createTitle(): Title
+        createLink(): Link
+        createImage(): Image
+    }
+
+    StyledTagFactory <|.. DraculaStyleFactory
+    StyledTagFactory <|.. ModernStyleFactory
+    StyledTagFactory <|.. SportStyleFactory
+
+    class DraculaStyleFactory {
+    createParagraph() : Paragraph
+            createTitle(): Title
+            createLink(): Link
+            createImage(): Image
+    }
+
+
+     Colored <.. DraculaStyleFactory : "generates"
+     Title <.. DraculaStyleFactory : "generates"
+
 }
 
 @enduml
