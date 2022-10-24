@@ -14,7 +14,7 @@ package "Bases des objets" <<Frame>> {
         - text : String
         getText() : String
         setText(text : String) : void
-        toHTML() : String
+        {abstract} toHTML() : String
     }
 
     Tag <|-- Paragraph
@@ -81,8 +81,11 @@ package "Prototype - mise à dispo de templates" <<Frame>> {
         get(String) : Page
     }
 
-    Tag : <abstract> clone()
+    Tag : {abstract} clone()
 }
+    note right of Tag::clone
+      This method is brought by Prototype pattern
+    end note
 
 package "Builder - création 'simple' de templates" <<Frame>> {
       class PageBuilder {
@@ -122,6 +125,8 @@ package "Abstract factory" <<Frame>> {
 
      Colored <.. DraculaStyleFactory : "generates"
      Title <.. DraculaStyleFactory : "generates"
+
+
 
 }
 
