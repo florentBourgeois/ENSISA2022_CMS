@@ -144,4 +144,25 @@ package "Abstract factory" <<Frame>> {
     Title <.. DraculaStyleFactory : "generates"
 }
 
+package "Strategy" <<frame>> {
+    class PriceCalculator {
+        setStrategy(Strategy)
+        calculatePrice() : double
+    }
+
+    interface Strategy {
+        calculate(Site) : double
+    }
+
+    class OVH {
+        calculate(Site) : double
+    }
+
+    class HostB {
+            calculate(Site) : double
+        }
+    PriceCalculator -> Strategy
+    Strategy <|.. OVH
+    Strategy <|.. HostB
+}
 @enduml
