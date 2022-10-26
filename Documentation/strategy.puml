@@ -40,109 +40,6 @@ package "Bases des objets" <<Frame>> {
 
 }
 
-package "Composite - création de div dans des div" <<Frame>> {
-
-    class Div2Col {
-
-    }
-
-    Tag <|--- Div2Col
-    Tag "colA *" <-- Div2Col
-    Tag "colB *" <-- Div2Col
-
-    Div2Col : toHTML(): String
-
-}
-
-package "Decorator - ajout de style à tout Tag" <<Frame>> {
-
-    abstract class StyleCSS
-    Tag <|-- StyleCSS
-    Tag <-- StyleCSS
-
-    StyleCSS <|-- Colored
-    StyleCSS <|-- Bolded
-    StyleCSS <|-- Underligned
-
-    Underligned : toHTML(): String
-    Bolded : toHTML(): String
-    Colored : toHTML(): String
-
-}
-
-
-package "Prototype - mise à dispo de templates" <<Frame>> {
-    Page : clone()
-
-    Registry --> "templates *" Page
-    class Registry {
-        add(String, Page)
-        remove(String)
-        get(String) : Page
-    }
-
-    Tag : <abstract> clone()
-}
-
-package "Builder - création 'simple' de templates" <<Frame>> {
-      class PageBuilder {
-        addParagraph()
-        addLink()
-        addTitle()
-        addImage()
-        build() : Page
-      }
-
-      PageBuilder ..> "<create>" Page
-      PageBuilder -> Registry
-      PageBuilder -> "inProgress" Page
-}
-
-
-package "Abstract factory" <<Frame>> {
-    abstract class StyledTagFactory {
-        createTitle() : Title
-        createParagraph() : Paragraph
-        createLink() : Link
-        createImage() : Image
-    }
-
-    StyledTagFactory <|.. DraculaStyleFactory
-    StyledTagFactory <|.. ModernStyleFactory
-    StyledTagFactory <|.. SportStyleFactory
-
-    interface StyledTagFactory {
-        createParagraph() : Paragraph
-        createTitle(): Title
-        createLink(): Link
-        createImage(): Image
-    }
-
-    StyledTagFactory <|.. DraculaStyleFactory
-    StyledTagFactory <|.. ModernStyleFactory
-    StyledTagFactory <|.. SportStyleFactory
-
-    class DraculaStyleFactory {
-    createParagraph() : Paragraph
-            createTitle(): Title
-            createLink(): Link
-            createImage(): Image
-    }
-
-
-     Colored <.. DraculaStyleFactory : "generates"
-     Title <.. DraculaStyleFactory : "generates"
-
-    class DraculaStyleFactory {
-        createTitle() : Title
-        createParagraph() : Paragraph
-        createLink() : Link
-        createImage() : Image
-    }
-
-    Colored <.. DraculaStyleFactory : "generates"
-    Title <.. DraculaStyleFactory : "generates"
-}
 
 package "Strategy" <<frame>> {
     class PriceCalculator {
@@ -150,6 +47,11 @@ package "Strategy" <<frame>> {
         setSite(Site)
         calculatePrice(Site) : double
     }
+    note right of PriceCalculator::setSite
+      This method is useless if
+      calculatePrice takes a site as param
+      which is quiet the correct signature
+    end note
 
     interface Strategy {
         calculate(Site) : double
@@ -159,12 +61,14 @@ package "Strategy" <<frame>> {
         calculate(Site) : double
     }
 
-    class HostB {
+    class Amazon {
             calculate(Site) : double
         }
     PriceCalculator -> Strategy
     Strategy <|.. OVH
-    Strategy <|.. HostB
-    Site <-- PriceCalculator
+    Strategy <|.. Amazon
+
+    PriceCalculator --> Site
+
 }
 @enduml
