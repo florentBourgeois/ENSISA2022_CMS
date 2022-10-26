@@ -219,4 +219,33 @@ package "Strategy" <<frame>> {
     "Composite - création de div dans des div" -[hidden]> "Strategy"
 }
 
+
+
+/'package "Proxy - log des ajouts de pages" {
+    interface Siteable {
+        add(p: Page)
+        remove(p: Page)
+        render(name : String)
+    }
+
+    abstract class Logger{
+        add(p: Page)
+        # {abstract} applyProxy(p: Page)
+    }
+    note left of Logger::add
+          this.apply(p)
+          this.proxyed.add(p)
+        end note
+
+
+    Logger <|-- FileLogger
+    Logger <|-- ConsoleLogger
+
+    Siteable <|.. Site
+    Siteable <|.. Logger
+    Logger -> Site : proxyed
+
+    FileLogger : apply(p: Page)
+    ConsoleLogger : apply(p: Page)
+}'/
 @enduml
