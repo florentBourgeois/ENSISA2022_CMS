@@ -1,26 +1,96 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Client{}
+package "Generic Proxy" {
+    class Client{}
 
-interface ServiceInterface {
-    + operation()
+    interface ServiceInterface {
+        + operation()
+    }
+
+    class Proxy {
+        - realService: Service
+        + Proxy(s: Service)
+        + checkAccess()
+        + operation()
+    }
+
+    class Service {
+        +operation()
+    }
+
+    ServiceInterface <- Client
+    Proxy o-> Service
+    ServiceInterface<|..Proxy
+    ServiceInterface<|..Service
 }
 
-class Proxy {
-    - realService: Service
-    + Proxy(s: Service)
-    + checkAccess()
-    + operation()
+
+package "Bases des objets" <<Frame>> {
+
+    class Page {
+        -title : String
+        -author : String
+        toHTML() : String
+    }
+
+    abstract class Tag {
+        - text : String
+        getText() : String
+        setText(text : String) : void
+        toHTML() : String
+    }
+
+    Tag <|-- Paragraph
+    Tag <|-- Title
+    Tag <|-- Link
+    Tag <|-- Image
+
+    Page -> "*" Tag : content
+    Site -> "*" Page : pages
+
+    class Site {
+        -title : String
+        -pages : Map<String, Page>
+        add(Page p)
+        remove(Page p)
+        render(String name)
+    }
+
+    Image : toHTML(): String
+    Link : toHTML(): String
+    Title : toHTML(): String
+    Paragraph : toHTML(): String
+
 }
 
-class Service {
-    +operation()
+package "Proxy - log des ajouts de pages" {
+    interface Siteable {
+        add(p: Page)
+        remove(p: Page)
+        render(name : String)
+    }
+
+    abstract class Logger{
+        add(p: Page)
+        # {abstract} applyProxy(p: Page)
+    }
+    note left of Logger::add
+          this.apply(p)
+          this.proxyed.add(p)
+        end note
+
+
+    Logger <|-- FileLogger
+    Logger <|-- ConsoleLogger
+
+    Siteable <|.. Site
+    Siteable <|.. Logger
+    Logger -> Site : proxyed
+
+    FileLogger : apply(p: Page)
+    ConsoleLogger : apply(p: Page)
 }
 
-ServiceInterface <- Client
-Proxy o-> Service
-ServiceInterface<|..Proxy
-ServiceInterface<|..Service
 
 @enduml
