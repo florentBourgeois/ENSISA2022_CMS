@@ -1,3 +1,5 @@
+import Site.Page;
+import Site.Site;
 import Tags.Image;
 import Tags.Link;
 import Tags.Paragraph;
@@ -77,7 +79,7 @@ public class Main {
 
         System.out.println(page.toHTML());
 
-        System.out.println("----------Site!----------");
+        System.out.println("----------Site.Site!----------");
         Site site = new Site("Mon site");
         site.addPage(page);
         site.addPage(new Page("Page2", "Florent Bourgeois"));
