@@ -125,4 +125,30 @@ package "Abstract factory" <<Frame>> {
 
 }
 
+package "Chain of responsability" <<Frame>>{
+    abstract Class "Fournisseur"{
+        abstract computePrice(String name, Map<String, Page> pages)) : int
+    }
+    Class Fournisseur1{
+        - name : String
+        computePrice(String name, Map<String, Page> pages)) : int
+    }
+    Class Fournisseur2{
+        - name : String
+        computePrice(String name, Map<String, Page> pages)) : int
+    }
+    Class Fournisseur3{
+        - name : String
+        computePrice(String name, Map<String, Page> pages)) : int
+    }
+
+    Fournisseur1 -|> "Fournisseur"
+    Fournisseur2 -|> "Fournisseur"
+    Fournisseur3 -|> "Fournisseur"
+
+    Fournisseur1 ->"next" Fournisseur2
+    Fournisseur2 ->"next" Fournisseur3
+    Site "Fournisseur"-> Fournisseur1
+}
+
 @enduml
