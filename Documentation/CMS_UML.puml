@@ -128,8 +128,41 @@ package "Abstract factory" <<Frame>> {
 
 }
 
+package "Visitor - exports sous d'autres formats" <<Frame>> {
+    interface Rewriter {
+        + accept(visitor : Visitor)
+    }
 
-package "Chain of responsability" <<Frame>>{
+    interface Visitor {
+        + visitJSON(j : RJSON)
+        + visitLaTex(l : RLaTex)
+    }
+
+    class RJSON {
+        + accept(visitor : Visitor)
+    }
+
+    class RLaTex {
+        + accept(visitor : Visitor)
+    }
+
+    class RewriterVisitor {
+        + visitJSON(jr : RJSON)
+        + visitLaTex(lr : RLaTex)
+    }
+
+    Rewriter <|.. RJSON    
+    Rewriter <|.. RLaTex
+    Visitor <.. Rewriter
+    RJSON <.. Visitor
+    RLaTex <.. Visitor
+    Visitor <|.. RewriterVisitor
+
+    Site ..> RewriterVisitor
+    Site ..> Rewriter
+}
+
+package "Chain of responsability" <<Frame>> {
     abstract Class "Fournisseur"{
         abstract computePrice(String name, Map<String, Page> pages)) : int
     }
