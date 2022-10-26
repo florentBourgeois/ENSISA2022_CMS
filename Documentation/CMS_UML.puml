@@ -128,39 +128,45 @@ package "Abstract factory" <<Frame>> {
 
 }
 
+
+/'
 package "Visitor - exports sous d'autres formats" <<Frame>> {
-    interface Rewriter {
-        + accept(visitor : Visitor)
-    }
 
     interface Visitor {
-        + visitJSON(j : RJSON)
-        + visitLaTex(l : RLaTex)
+        + visitSite(visited : Site)
+        + visitPage(visited : Page)
+        + visitTitle(visited : Title)
+        + visitBolded(visited : Bolded)
+        + visitDiv2Col(visited : Div2Col)
+        + visit...(visited : ...)
+    }
+    note right of Visitor
+            une méthode par élément à visiter
+            Ne pas oublier le decorator ou le composite !
+    end note
+
+    class JSONVisitor {
+        + visitSite(visited : Site)
+        + visit...(visited : ...)
+    }
+    class LatexVisitor {
+            + visitSite(visited : Site)
+            + visit...(visited : ...)
     }
 
-    class RJSON {
-        + accept(visitor : Visitor)
-    }
+    Visitor <|.. JSONVisitor
+    Visitor <|.. LatexVisitor
 
-    class RLaTex {
-        + accept(visitor : Visitor)
-    }
+    Visitor ...> Site : visit
+    Visitor ..> Page : visit
+    Visitor ..> Tag : visit
 
-    class RewriterVisitor {
-        + visitJSON(jr : RJSON)
-        + visitLaTex(lr : RLaTex)
-    }
+    Site : accept(v : Visitor)
+    Page : accept(v : Visitor)
+    Title : accept(v : Visitor)
+    Tag : accept(v : Visitor)
+}'/
 
-    Rewriter <|.. RJSON    
-    Rewriter <|.. RLaTex
-    Visitor <.. Rewriter
-    RJSON <.. Visitor
-    RLaTex <.. Visitor
-    Visitor <|.. RewriterVisitor
-
-    Site ..> RewriterVisitor
-    Site ..> Rewriter
-}
 /'
 
 package "Chain of responsability - calculer cout hebergement" <<Frame>> {

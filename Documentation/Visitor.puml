@@ -1,0 +1,97 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+note left of "Bases des objets"
+          L'ajout du visiteur implique à l'ensemble des classes
+          qui seront visitées d'implémenter la méthode accept(v:Visitor)
+          C'est un changement très lourd pour l'architecture.
+          Si c'est uniquement pour logger deux petites actions dans
+          le projet ; c'est totalement à prohiber -> favoriser le proxy
+        end note
+
+
+package "Bases des objets" <<Frame>> {
+
+    class Page {
+        -title : String
+        -author : String
+        toHTML() : String
+    }
+
+    abstract class Tag {
+        - text : String
+        getText() : String
+        setText(text : String) : void
+        toHTML() : String
+    }
+
+    Tag <|-- Paragraph
+    Tag <|-- Title
+    Tag <|-- Link
+    Tag <|-- Image
+
+    Page -> "*" Tag : content
+    Site -> "*" Page : pages
+
+    class Site {
+        -title : String
+        -pages : Map<String, Page>
+        add(Page p)
+        remove(Page p)
+        render(String name)
+    }
+
+    Image : toHTML(): String
+    Link : toHTML(): String
+    Title : toHTML(): String
+    Paragraph : toHTML(): String
+
+note left of Site::accept
+        v.visitSite(this)
+end note
+
+note right of Title::accept
+        v.visitParagraph(this)
+end note
+
+}
+
+
+package "Visitor - exports sous d'autres formats" <<Frame>> {
+
+    interface Visitor {
+        + visitSite(visited : Site)
+        + visitPage(visited : Page)
+        + visitTitle(visited : Title)
+        + visitBolded(visited : Bolded)
+        + visitDiv2Col(visited : Div2Col)
+        + visit...(visited : ...)
+    }
+    note right of Visitor
+            une méthode par élément à visiter
+            Ne pas oublier le decorator ou le composite !
+    end note
+
+    class JSONVisitor {
+        + visitSite(visited : Site)
+        + visit...(visited : ...)
+    }
+    class LatexVisitor {
+            + visitSite(visited : Site)
+            + visit...(visited : ...)
+    }
+
+    Visitor <|.. JSONVisitor
+    Visitor <|.. LatexVisitor
+
+    Visitor ...> Site : visit
+    Visitor ..> Page : visit
+    Visitor ..> Tag : visit
+
+    Site : accept(v : Visitor)
+    Page : accept(v : Visitor)
+    Title : accept(v : Visitor)
+    Tag : accept(v : Visitor)
+}
+
+@enduml
