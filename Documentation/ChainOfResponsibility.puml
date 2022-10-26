@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Bases des objets" <<Frame>> {
+
+    class Page {
+        -title : String
+        -author : String
+        toHTML() : String
+    }
+
+    abstract class Tag {
+        - text : String
+        getText() : String
+        setText(text : String) : void
+        toHTML() : String
+    }
+
+    Tag <|-- Paragraph
+    Tag <|-- Title
+    Tag <|-- Link
+    Tag <|-- Image
+
+    Page -> "*" Tag : content
+    Site -> "*" Page : pages
+
+    class Site {
+        -title : String
+        -pages : Map<String, Page>
+        add(Page p)
+        remove(Page p)
+        render(String name)
+    }
+
+    Image : toHTML(): String
+    Link : toHTML(): String
+    Title : toHTML(): String
+    Paragraph : toHTML(): String
+
+}
+
+
+package "Chain of responsability - calculer cout hebergement" <<Frame>> {
+    abstract Class Host{
+        {abstract} computePrice(String name, Map<String, Page> pages) : int
+    }
+    Host <-- Host : next
+
+    Class OVH{
+        - name : String
+        computePrice(String name, ...) : int
+    }
+    Class Amazon{
+        - name : String
+        computePrice(String name, ...) : int
+    }
+    Class Hebergeur3{
+        - name : String
+        computePrice(String name, ...) : int
+    }
+
+    Host <|-- OVH
+    Host <|-- Amazon
+    Host <|-- Hebergeur3
+
+}
+Client --> Site : wantsToHost
+Host <- Client : usesToEstimateHostCost
+
+@enduml
