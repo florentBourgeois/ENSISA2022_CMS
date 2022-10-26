@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Div2Col extends Tag {
 
+
+
     private List<Tag> colA = new ArrayList<>();
     private List<Tag> colB = new ArrayList<>();
 
@@ -24,19 +26,19 @@ public class Div2Col extends Tag {
     public String toHTML(){
         String HTML ="<div class='div2col'>\n";
 
-        HTML += "<div class='colA'>";
+        HTML += "<div class='col' style='background-color:#aaa';>";
         for (Tag tag : this.colA){
             HTML += "\n\t" + tag.toHTML();
         }
-        HTML += "</div>";
+        HTML += "</div>\n";
 
-        HTML += "<div class='colB'>";
+        HTML += "<div class='col' style='background-color:#eee';>";
         for (Tag tag : this.colB){
             HTML += "\n\t" + tag.toHTML();
         }
-        HTML += "</div>";
+        HTML += "\n</div>\n";
 
-        HTML += "</div>";
+        HTML += "</div>\n\n";
         return HTML;
     }
 

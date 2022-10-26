@@ -81,8 +81,11 @@ package "Prototype - mise à dispo de templates" <<Frame>> {
         get(String) : Page
     }
 
-    Tag : <abstract> clone()
+    Tag : {abstract} clone()
 }
+    note right of Tag::clone
+      This method is brought by Prototype pattern
+    end note
 
 package "Builder - création 'simple' de templates" <<Frame>> {
       class PageBuilder {
@@ -100,16 +103,6 @@ package "Builder - création 'simple' de templates" <<Frame>> {
 
 
 package "Abstract factory" <<Frame>> {
-    abstract class StyledTagFactory {
-        createTitle() : Title
-        createParagraph() : Paragraph
-        createLink() : Link
-        createImage() : Image
-    }
-
-    StyledTagFactory <|.. DraculaStyleFactory
-    StyledTagFactory <|.. ModernStyleFactory
-    StyledTagFactory <|.. SportStyleFactory
 
     interface StyledTagFactory {
         createParagraph() : Paragraph
@@ -133,16 +126,8 @@ package "Abstract factory" <<Frame>> {
      Colored <.. DraculaStyleFactory : "generates"
      Title <.. DraculaStyleFactory : "generates"
 
-    class DraculaStyleFactory {
-        createTitle() : Title
-        createParagraph() : Paragraph
-        createLink() : Link
-        createImage() : Image
-    }
-
-    Colored <.. DraculaStyleFactory : "generates"
-    Title <.. DraculaStyleFactory : "generates"
 }
+
 
 package "Chain of responsability" <<Frame>>{
     abstract Class "Fournisseur"{

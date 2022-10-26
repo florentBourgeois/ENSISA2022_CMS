@@ -1,7 +1,10 @@
+import Site.Page;
+import Site.Site;
 import Tags.Image;
 import Tags.Link;
 import Tags.Paragraph;
 import Tags.Title;
+import composite.Div2Col;
 
 public class Main {
     public static void main(String[] args) {
@@ -52,9 +55,31 @@ public class Main {
         page.addTag(l);
         page.addTag(i);
 
+        Div2Col d1 = new Div2Col();
+
+        d1.addToColA(new Title("ColA"));
+        d1.addToColA(new Title("ColB"));
+        d1.addToColA(new Paragraph("p1"));
+        d1.addToColA(new Paragraph("p2"));
+        d1.addToColA(new Paragraph("p3"));
+        d1.addToColA(new Paragraph("p4"));
+
+        Div2Col d2 = new Div2Col();
+        d2.addToColB(new Title("D2 col A"));
+        d2.addToColB(new Title("D2 col B"));
+        d2.addToColB(d1);
+
+        page.addTag(new Title("Insersion de colones"));
+        page.addTag(d1);
+        page.addTag(new Title("Insersion de colones dans des colones"));
+        page.addTag(d2);
+
+
+
+
         System.out.println(page.toHTML());
 
-        System.out.println("----------Site!----------");
+        System.out.println("----------Site.Site!----------");
         Site site = new Site("Mon site");
         site.addPage(page);
         site.addPage(new Page("Page2", "Florent Bourgeois"));
