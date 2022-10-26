@@ -44,29 +44,29 @@ public class Page {
     }
 
     private String headHTML(){
-        return "<head>\n" +
-                "    <meta charset=\"UTF-8\" name=\"viewport\" content=\"width=device-width, initial-scale=1\">>\n" +
-                "    <title>" + this.title + "</title>\n" +
-                "<style>\n" +
-                "* {\n" +
-                "  box-sizing: border-box;\n" +
-                "}\n" +
-                "\n" +
-                "/* Create two equal columns that floats next to each other */\n" +
-                ".div2col {\n" +
-                "  float: left;\n" +
-                "  width: 50%;\n" +
-                "  padding: 10px;\n" +
-                "  height: 300px; /* Should be removed. Only for demonstration */\n" +
-                "}\n" +
-                "\n" +
-                "/* Clear floats after the columns */\n" +
-                ".col:after {\n" +
-                "  content: \"\";\n" +
-                "  display: table;\n" +
-                "  clear: both;\n" +
-                "}\n" +
-                "</style>" +
-                "</head>\n" ;
+        return
+                //"<title>" + this.title + "</title>\n" +
+                "<head>\n" +
+                        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                        "<style>\n" +
+                        "* {\n" +
+                        "  box-sizing: border-box;\n" +
+                        "}\n" +
+                        "\n" +
+                        "/* Create two equal columns that floats next to each other */\n" +
+                        ".col {\n" +
+                        "  float: left;\n" +
+                        "  width: 50%;\n" +
+                        "  padding: 10px;\n" +
+                        "  height: 300px; /* Should be removed. Only for demonstration */\n" +
+                        "}\n" +
+                        "\n" +
+                        ".div2col:after {\n" +
+                        "  content: \"\";\n" +
+                        "  display: table;\n" +
+                        "  clear: both;\n" +
+                        "}\n" +
+                        "</style>\n" +
+                        "</head>";
     }
 }

@@ -58,14 +58,14 @@ public class Main {
         Div2Col d1 = new Div2Col();
 
         d1.addToColA(new Title("ColA"));
-        d1.addToColA(new Title("ColB"));
+        d1.addToColB(new Title("ColB"));
         d1.addToColA(new Paragraph("p1"));
         d1.addToColA(new Paragraph("p2"));
         d1.addToColA(new Paragraph("p3"));
         d1.addToColA(new Paragraph("p4"));
 
         Div2Col d2 = new Div2Col();
-        d2.addToColB(new Title("D2 col A"));
+        d2.addToColA(new Title("D2 col A"));
         d2.addToColB(new Title("D2 col B"));
         d2.addToColB(d1);
 

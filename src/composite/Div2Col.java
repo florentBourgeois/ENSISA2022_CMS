@@ -26,13 +26,13 @@ public class Div2Col extends Tag {
     public String toHTML(){
         String HTML ="<div class='div2col'>\n";
 
-        HTML += "<div class='col' style='background-color:#aaa';>";
+        HTML += "<div class='col' style='background-color:#aaa;'>";
         for (Tag tag : this.colA){
             HTML += "\n\t" + tag.toHTML();
         }
         HTML += "</div>\n";
 
-        HTML += "<div class='col' style='background-color:#eee';>";
+        HTML += "<div class='col' style='background-color:#eee;'>";
         for (Tag tag : this.colB){
             HTML += "\n\t" + tag.toHTML();
         }
