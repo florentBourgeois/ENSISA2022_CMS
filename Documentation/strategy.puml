@@ -81,11 +81,8 @@ package "Prototype - mise à dispo de templates" <<Frame>> {
         get(String) : Page
     }
 
-    Tag : {abstract} clone()
+    Tag : <abstract> clone()
 }
-    note right of Tag::clone
-      This method is brought by Prototype pattern
-    end note
 
 package "Builder - création 'simple' de templates" <<Frame>> {
       class PageBuilder {
@@ -103,6 +100,16 @@ package "Builder - création 'simple' de templates" <<Frame>> {
 
 
 package "Abstract factory" <<Frame>> {
+    abstract class StyledTagFactory {
+        createTitle() : Title
+        createParagraph() : Paragraph
+        createLink() : Link
+        createImage() : Image
+    }
+
+    StyledTagFactory <|.. DraculaStyleFactory
+    StyledTagFactory <|.. ModernStyleFactory
+    StyledTagFactory <|.. SportStyleFactory
 
     interface StyledTagFactory {
         createParagraph() : Paragraph
@@ -126,33 +133,36 @@ package "Abstract factory" <<Frame>> {
      Colored <.. DraculaStyleFactory : "generates"
      Title <.. DraculaStyleFactory : "generates"
 
+    class DraculaStyleFactory {
+        createTitle() : Title
+        createParagraph() : Paragraph
+        createLink() : Link
+        createImage() : Image
+    }
+
+    Colored <.. DraculaStyleFactory : "generates"
+    Title <.. DraculaStyleFactory : "generates"
 }
 
-
-package "Chain of responsability" <<Frame>>{
-    abstract Class "Fournisseur"{
-        abstract computePrice(String name, Map<String, Page> pages)) : int
-    }
-    Class Fournisseur1{
-        - name : String
-        computePrice(String name, Map<String, Page> pages)) : int
-    }
-    Class Fournisseur2{
-        - name : String
-        computePrice(String name, Map<String, Page> pages)) : int
-    }
-    Class Fournisseur3{
-        - name : String
-        computePrice(String name, Map<String, Page> pages)) : int
+package "Strategy" <<frame>> {
+    class PriceCalculator {
+        setStrategy(Strategy)
+        calculatePrice() : double
     }
 
-    Fournisseur1 -|> "Fournisseur"
-    Fournisseur2 -|> "Fournisseur"
-    Fournisseur3 -|> "Fournisseur"
+    interface Strategy {
+        calculate(Site) : double
+    }
 
-    Fournisseur1 ->"next" Fournisseur2
-    Fournisseur2 ->"next" Fournisseur3
-    Site "Fournisseur"-> Fournisseur1
+    class OVH {
+        calculate(Site) : double
+    }
+
+    class HostB {
+            calculate(Site) : double
+        }
+    PriceCalculator -> Strategy
+    Strategy <|.. OVH
+    Strategy <|.. HostB
 }
-
 @enduml
