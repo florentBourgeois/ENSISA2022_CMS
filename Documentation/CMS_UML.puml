@@ -188,4 +188,35 @@ package "Chain of responsability" <<Frame>> {
     Site "Fournisseur"-> Fournisseur1
 }
 
+package "Strategy" <<frame>> {
+    class PriceCalculator {
+        setStrategy(Strategy)
+        setSite(Site)
+        calculatePrice(Site) : double
+    }
+    note right of PriceCalculator::setSite
+      This method is useless if
+      calculatePrice takes a site as param
+      which is quiet the correct signature
+    end note
+
+    interface Strategy {
+        calculate(Site) : double
+    }
+
+    class OVH {
+        calculate(Site) : double
+    }
+
+    class HostB {
+            calculate(Site) : double
+        }
+    PriceCalculator -> Strategy
+    Strategy <|.. OVH
+    Strategy <|.. HostB
+    PriceCalculator --> Site
+
+    "Composite - création de div dans des div" -[hidden]> "Strategy"
+}
+
 @enduml
