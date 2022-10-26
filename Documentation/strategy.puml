@@ -41,7 +41,7 @@ package "Bases des objets" <<Frame>> {
 }
 
 
-package "Strategy" <<frame>> {
+package "Strategy - calculer cout hebergement" <<frame>> {
     class PriceCalculator {
         setStrategy(Strategy)
         setSite(Site)
