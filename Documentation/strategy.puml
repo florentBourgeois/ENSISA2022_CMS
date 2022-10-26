@@ -147,7 +147,8 @@ package "Abstract factory" <<Frame>> {
 package "Strategy" <<frame>> {
     class PriceCalculator {
         setStrategy(Strategy)
-        calculatePrice() : double
+        setSite(Site)
+        calculatePrice(Site) : double
     }
 
     interface Strategy {
@@ -164,5 +165,6 @@ package "Strategy" <<frame>> {
     PriceCalculator -> Strategy
     Strategy <|.. OVH
     Strategy <|.. HostB
+    Site <-- PriceCalculator
 }
 @enduml
