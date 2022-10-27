@@ -23,4 +23,8 @@ public class Site {
         System.out.println(this.pages.get(title).toHTML());
     }
 
+    public Map<String, Page> getPages() {
+        return this.pages;
+    }
+
 }
