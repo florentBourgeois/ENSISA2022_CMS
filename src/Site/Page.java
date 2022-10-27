@@ -16,6 +16,10 @@ public class Page {
         this.author = author;
     }
 
+    public List<Tag> getContent() {
+        return this.content;
+    }
+
     public String getTitle() {
         return title;
     }
