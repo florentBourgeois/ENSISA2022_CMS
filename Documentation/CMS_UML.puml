@@ -257,5 +257,63 @@ package "Strategy - calculer cout hebergement" <<frame>> {
 
     FileLogger : apply(p: Page)
     ConsoleLogger : apply(p: Page)
-}'/
+}
+
+
+package "Observer - log des ajouts de pages" {
+    interface Logger {
+            + log()
+    }
+
+    note left of Logger::log
+        La signature log(message : String)
+        est également viable puisqu'on attend pas d'autre
+        type d'observable (d'ou le nom Logger)
+    end note
+
+    note left of Logger
+        Plutot qu'une interface, une classe abstraite
+        avec un site en attribut est viable dans ce cas
+    end note
+
+
+
+    abstract class Subject {
+            + attach(o:Observer)
+            + dettach(o:Observer)
+            + notify()
+        }
+
+    abstract class Subject_Observed {
+        + attach(o:Observer)
+        + dettach(o:Observer)
+        + notify()
+    }
+
+    class FileLogger {
+        -currentPagesNames : List<String>
+        log()
+    }
+
+    class ConsoleLogger {
+        -currentPagesNames : List<String>
+        log()
+    }
+
+    Logger <|.. FileLogger
+    Logger <|.. ConsoleLogger
+    Subject <|--- Site
+    Subject -> "*" Logger : observers
+    ConsoleLogger -> "observed" Site
+    FileLogger -> "observed" Site
+
+
+
+    class Site {
+        getPages() : List<Page>
+    }
+
+}
+
+'/
 @enduml
