@@ -1,0 +1,150 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Generic Observer" {
+    class Client{}
+
+    interface Observer {
+        + update()
+    }
+
+    abstract class Subject_Observed {
+        + attach(o:Observer)
+        + dettach(o:Observer)
+        + notify()
+    }
+
+    note left of Subject_Observed::notify
+              for(Observer o : observers)
+                    o.update();
+            end note
+
+    class SubjectImpl {
+        - state : State
+        + getState() : State
+        + setState(s : State)
+    }
+
+    class ObserverImpl1 {
+        -state
+        update()
+    }
+
+    class ObserverImpl2 {
+        -state
+        update()
+    }
+
+    Observer <|.. ObserverImpl1
+    Observer <|.. ObserverImpl2
+    Subject_Observed <|-- SubjectImpl
+    Subject_Observed -> "* observers" Observer
+    ObserverImpl1 -> "observed" SubjectImpl
+    ObserverImpl2 -> "observed" SubjectImpl
+
+    Client -> SubjectImpl : ''changeState''
+
+}
+
+
+package "Bases des objets" <<Frame>> {
+
+    class Page {
+        -title : String
+        -author : String
+        toHTML() : String
+    }
+
+    abstract class Tag {
+        - text : String
+        getText() : String
+        setText(text : String) : void
+        toHTML() : String
+    }
+
+    Tag <|-- Paragraph
+    Tag <|-- Title
+    Tag <|-- Link
+    Tag <|-- Image
+
+    Page -> "*" Tag : content
+    Site -> "*" Page : pages
+
+    class Site {
+        -title : String
+        -pages : Map<String, Page>
+        add(Page p)
+        remove(Page p)
+        render(String name)
+    }
+
+    Image : toHTML(): String
+    Link : toHTML(): String
+    Title : toHTML(): String
+    Paragraph : toHTML(): String
+
+
+    note left of Site::getPages
+        Permet aux loggers de voir la liste des pages
+        et de réagir à l'apparition / disparition d'une page
+    end note
+
+}
+
+package "Observer - log des ajouts de pages" {
+    interface Logger {
+            + log()
+    }
+
+    note left of Logger::log
+        La signature log(message : String)
+        est également viable puisqu'on attend pas d'autre
+        type d'observable (d'ou le nom Logger)
+    end note
+
+    note left of Logger
+        Plutot qu'une interface, une classe abstraite
+        avec un site en attribut est viable dans ce cas
+    end note
+
+
+
+    abstract class Subject {
+            + attach(o:Observer)
+            + dettach(o:Observer)
+            + notify()
+        }
+
+    abstract class Subject_Observed {
+        + attach(o:Observer)
+        + dettach(o:Observer)
+        + notify()
+    }
+
+    class FileLogger {
+        -currentPagesNames : List<String>
+        log()
+    }
+
+    class ConsoleLogger {
+        -currentPagesNames : List<String>
+        log()
+    }
+
+    Logger <|.. FileLogger
+    Logger <|.. ConsoleLogger
+    Subject <|--- Site
+    Subject -> "*" Logger : observers
+    ConsoleLogger -> "observed" Site
+    FileLogger -> "observed" Site
+
+
+
+    class Site {
+        getPages() : List<Page>
+    }
+
+}
+
+
+@enduml
