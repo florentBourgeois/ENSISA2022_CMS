@@ -73,4 +73,30 @@ public class Page {
                         "</style>\n" +
                         "</head>";
     }
+
+
+    public class PageMemento {
+        private String title;
+        private String author;
+        private List<Tag> content = new ArrayList<>();
+    
+        public PageMemento(Page p){
+            //this.content = p.content; // cette approche n'est pas bonne. Java fonctionne par référence et non par valeur -> il faut donc copier les éléments de la liste et pas la liste elle-même autrement elle sera partagée par toutes les mementos
+            content = new ArrayList<>(p.content);
+            this.title = p.title;
+            this.author = p.author;
+        }
+
+    }
+
+    public PageMemento save(){
+        PageMemento page_save = new PageMemento(this);
+        return page_save;
+    }
+
+    public void restore (PageMemento m){
+        this.content = m.content;
+        this.title = m.title;
+        this.author = m.author;
+    }
 }
