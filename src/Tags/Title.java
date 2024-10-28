@@ -12,6 +12,11 @@ public class Title extends Tag {
         this.text = text;
     }
 
+    public Title(String text, int lvl) {
+        this.text = text;
+        this.lvl = lvl;
+    }
+
 
     public int getLvl() {
         return lvl;
