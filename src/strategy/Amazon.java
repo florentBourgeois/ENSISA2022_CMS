@@ -32,15 +32,10 @@ public class Amazon implements Strategy {
     }
 
     private double getTagPrice(Tag t) {
-        Paragraph paragraph = new Paragraph();
-        Title title = new Title();
-        Link link = new Link();
-        Image image = new Image();
-
-        if(t.getClass().getName().equals(paragraph.getClass().getName())) return PARAGRAPH_PRICE;
-        if(t.getClass().getName().equals(title.getClass().getName())) return TITLE_PRICE;
-        if(t.getClass().getName().equals(link.getClass().getName())) return LINK_PRICE;
-        if(t.getClass().getName().equals(image.getClass().getName())) return IMAGE_PRICE;
+        if(t.getClass().getName().equals(Paragraph.class.getName())) return PARAGRAPH_PRICE;
+        if(t.getClass().getName().equals(Title.class.getClass().getName())) return TITLE_PRICE;
+        if(t.getClass().getName().equals(Link.class.getClass().getName())) return LINK_PRICE;
+        if(t.getClass().getName().equals(Image.class.getClass().getName())) return IMAGE_PRICE;
 
         return DEFAULT_PRICE;
     }

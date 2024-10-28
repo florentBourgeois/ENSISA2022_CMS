@@ -1,1 +1,27 @@
-./page.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.col {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.div2col:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head><body>
+    <p>azeazeaze</p>
+</body>
+</html>
