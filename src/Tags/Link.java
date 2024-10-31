@@ -35,4 +35,8 @@ public class Link extends Tag {
                 '}';
     }
 
+    public Link getClone() {
+        return new Link(this.text, this.href);
+    }
+
 }

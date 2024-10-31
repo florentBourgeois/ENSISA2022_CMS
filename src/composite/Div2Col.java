@@ -3,6 +3,7 @@ package composite;
 import Tags.Paragraph;
 import Tags.Tag;
 import Tags.Title;
+import prototype.Clonable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,17 @@ public class Div2Col extends Tag {
         return HTML;
     }
 
+    @Override
+    public Div2Col getClone() {
+        Div2Col d = new Div2Col();
+        for (Tag tag : this.colA){
+            d.addToColA((Tag) tag.getClone());
+        }
+        for (Tag tag : this.colB){
+            d.addToColB((Tag) tag.getClone());
+        }
+        return d;
+    }
 
     public static void main(String[] args) {
         Div2Col d1 = new Div2Col();

@@ -1,5 +1,7 @@
 package Tags;
 
+import prototype.Clonable;
+
 public class Title extends Tag {
 
     private int lvl = 1;
@@ -37,6 +39,10 @@ public class Title extends Tag {
                 "text='" + text + '\'' +
                 ", lvl=" + lvl +
                 '}';
+    }
+
+    public Title getClone() {
+        return new Title(this.text, this.lvl);
     }
 
 }

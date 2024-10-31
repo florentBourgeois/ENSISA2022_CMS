@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+package "Bases des objets" <<Frame>> {
+
+    class Page {
+        -title : String
+        -author : String
+        toHTML() : String
+    }
+
+    abstract class Tag {
+        - text : String
+        getText() : String
+        setText(text : String) : void
+        toHTML() : String
+    }
+
+    Tag <|-- Paragraph
+    Tag <|-- Title
+    Tag <|-- Link
+    Tag <|-- Image
+
+    Page --> "*" Tag : content
+    Site -> "*" Page : pages
+
+    class Site {
+        -title : String
+        -pages : Map<String, Page>
+        add(Page p)
+        remove(Page p)
+        render(String name)
+    }
+
+    Image : toHTML(): String
+    Link : toHTML(): String
+    Title : toHTML(): String
+    Paragraph : toHTML(): String
+
+}
+
+
+package "Builder - création 'simple' de templates" <<Frame>> {
+      class PageBuilder {
+        addParagraph()
+        addLink()
+        addTitle()
+        addImage()
+        build() : Page
+      }
+
+      PageBuilder ..> "<create>" Page
+      PageBuilder -> "inProgress" Page
+
+      PageBuilder <- Director : builder
+
+       class Director {
+       private JFrame frame;
+           JTextField titleField;
+           JTextField authorField;}
+      }
+
+     note right of Director
+       User creates pages clicking on the director IHM
+       IHM clicks call builder methods
+     end note
+}
+
+
+@enduml

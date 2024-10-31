@@ -21,4 +21,8 @@ public class Paragraph extends Tag {
                 "text='" + text + '\'' +   "   HTML='" + this.toHTML() + '\'' +
                 '}';
     }
+
+    public Paragraph getClone() {
+        return new Paragraph(this.text);
+    }
 }

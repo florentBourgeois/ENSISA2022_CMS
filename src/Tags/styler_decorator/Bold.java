@@ -1,6 +1,7 @@
 package Tags.styler_decorator;
 
 import Tags.Tag;
+import prototype.Clonable;
 
 public class Bold extends StylerDecorator {
 
@@ -18,4 +19,9 @@ public class Bold extends StylerDecorator {
         return "Bold styler qui " + super.toString();
     }
 
+
+    @Override
+    public Clonable getClone() {
+        return new Bold((Tag) styled.getClone());
+    }
 }

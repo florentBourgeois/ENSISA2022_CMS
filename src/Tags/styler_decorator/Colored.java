@@ -1,6 +1,7 @@
 package Tags.styler_decorator;
 
 import Tags.Tag;
+import prototype.Clonable;
 
 public class Colored extends StylerDecorator {
     private String color;
@@ -20,4 +21,8 @@ public class Colored extends StylerDecorator {
         return "Colored ("+this.color+")styler qui " + super.toString();
     }
 
+    @Override
+    public Clonable getClone() {
+        return new Colored((Tag) styled.getClone(), this.color);
+    }
 }

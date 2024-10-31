@@ -1,6 +1,7 @@
 package Tags.styler_decorator;
 
 import Tags.Tag;
+import prototype.Clonable;
 
 public class Italic extends StylerDecorator {
 
@@ -18,4 +19,9 @@ public class Italic extends StylerDecorator {
         return "Italic styler qui " + super.toString();
     }
 
+
+    @Override
+    public Clonable getClone() {
+        return new Italic((Tag) styled.getClone());
+    }
 }

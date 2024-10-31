@@ -5,7 +5,7 @@ import Tags.Tag;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Page {
+public class Page implements Cloneable {
 
     private String title;
     private String author;
@@ -98,5 +98,14 @@ public class Page {
         this.content = m.content;
         this.title = m.title;
         this.author = m.author;
+    }
+
+
+    public Page getClone() {
+        Page p = new Page(this.title, this.author);
+        for (Tag tag : content) {
+            p.addTag((Tag) tag.getClone());
+        }
+        return p;
     }
 }

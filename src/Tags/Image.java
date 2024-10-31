@@ -32,4 +32,8 @@ public class Image extends Tag {
                 ", src=" + src +
                 '}';
     }
+
+    public Image getClone() {
+        return new Image(this.text, this.src);
+    }
 }

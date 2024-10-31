@@ -1,6 +1,8 @@
 package Tags;
 
-public abstract class Tag {
+import prototype.Clonable;
+
+public abstract class Tag implements Clonable {
 
     protected String text = "Hello World";
 

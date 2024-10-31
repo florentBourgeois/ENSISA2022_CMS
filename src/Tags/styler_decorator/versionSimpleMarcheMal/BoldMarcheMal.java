@@ -2,11 +2,12 @@ package Tags.styler_decorator.versionSimpleMarcheMal;
 
 
 import Tags.Tag;
+import prototype.Clonable;
 
 public class BoldMarcheMal extends StylerSimpleMarcheMal {
 
-    public BoldMarcheMal(Tag htmlable) {
-        super(htmlable);
+    public BoldMarcheMal(Tag styled) {
+        super(styled);
     }
 
     @Override
@@ -19,4 +20,8 @@ public class BoldMarcheMal extends StylerSimpleMarcheMal {
         return "Bold styler qui " + super.toString();
     }
 
+    @Override
+    public BoldMarcheMal getClone() {
+        return new BoldMarcheMal((Tag) styled.getClone());
+    }
 }

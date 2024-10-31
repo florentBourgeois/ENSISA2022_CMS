@@ -1,6 +1,8 @@
-package Site;
+package memento;
 
 import java.util.Stack;
+
+import Site.Page;
 import Site.Page.PageMemento;
 import Tags.Paragraph;
 import Tags.Title;
