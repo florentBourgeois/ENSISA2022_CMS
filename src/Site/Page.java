@@ -1,6 +1,7 @@
 package Site;
 
 import Tags.Tag;
+import visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,6 @@ public class Page implements Cloneable {
                         "</head>";
     }
 
-
     public class PageMemento {
         private String title;
         private String author;
@@ -107,5 +107,11 @@ public class Page implements Cloneable {
             p.addTag((Tag) tag.getClone());
         }
         return p;
+    }
+
+
+    /// VISITOR ///
+    public void accept(Visitor v) {
+        v.visitPage(this);
     }
 }

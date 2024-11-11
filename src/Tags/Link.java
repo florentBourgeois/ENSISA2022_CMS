@@ -1,5 +1,7 @@
 package Tags;
 
+import visitor.Visitor;
+
 public class Link extends Tag {
 
     private String href = "www.google.com";
@@ -39,4 +41,8 @@ public class Link extends Tag {
         return new Link(this.text, this.href);
     }
 
+    /// VISITOR ///
+    public void accept(Visitor v) {
+        v.visitLink(this);
+    }
 }

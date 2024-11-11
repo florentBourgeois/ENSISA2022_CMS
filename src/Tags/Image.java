@@ -1,5 +1,7 @@
 package Tags;
 
+import visitor.Visitor;
+
 public class Image extends Tag {
 
     private String src = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
@@ -35,5 +37,10 @@ public class Image extends Tag {
 
     public Image getClone() {
         return new Image(this.text, this.src);
+    }
+
+    /// VISITOR ///
+    public void accept(Visitor v) {
+        v.visitImage(this);
     }
 }

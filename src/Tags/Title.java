@@ -1,6 +1,7 @@
 package Tags;
 
 import prototype.Clonable;
+import visitor.Visitor;
 
 public class Title extends Tag {
 
@@ -45,4 +46,9 @@ public class Title extends Tag {
         return new Title(this.text, this.lvl);
     }
 
+
+    /// VISITOR ///
+    public void accept(Visitor v) {
+        v.visitTitle(this);
+    }
 }

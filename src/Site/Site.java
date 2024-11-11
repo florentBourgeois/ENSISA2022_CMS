@@ -1,14 +1,23 @@
 package Site;
 
+import visitor.Visitor;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Site {
-    private String title;
+    private String title = "";
     private Map<String, Page> pages = new HashMap<>();
+
+    public Site() {
+    }
 
     public Site(String title){
         this.title = title;
+    }
+
+    public String getTitle() {
+        return this.title;
     }
 
     public void addPage(Page page){
@@ -27,6 +36,9 @@ public class Site {
         return this.pages;
     }
 
-    
+    /// VISITOR ///
+    public void accept(Visitor v) {
+        v.visitSite(this);
+    }
 
 }

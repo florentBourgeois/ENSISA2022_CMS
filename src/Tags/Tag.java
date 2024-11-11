@@ -1,6 +1,8 @@
 package Tags;
 
 import prototype.Clonable;
+import visitor.TextExtractionVisitor;
+import visitor.Visitor;
 
 public abstract class Tag implements Clonable {
 
@@ -22,5 +24,9 @@ public abstract class Tag implements Clonable {
         return "Tag{" +
                 "text='" + text + '\'' +
                 '}';
+    }
+
+    public void accept(Visitor v) {
+        v.visitTag(this);
     }
 }

@@ -1,5 +1,7 @@
 package Tags;
 
+import visitor.Visitor;
+
 public class Paragraph extends Tag {
 
     public Paragraph() {
@@ -24,5 +26,10 @@ public class Paragraph extends Tag {
 
     public Paragraph getClone() {
         return new Paragraph(this.text);
+    }
+
+    /// VISITOR ///
+    public void accept(Visitor v) {
+        v.visitParagraph(this);
     }
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import Site.Page;
 
-public class Fournisseur {
+public class Main {
 	
 	public static void main(String[] args) {
 		Chain fournisseur1 = new Fournisseur1();
